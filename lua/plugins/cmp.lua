@@ -1,11 +1,3 @@
--- local t = function(str)
--- return vim.api.nvim_replace_termcodes(str, true, true, true)
--- end
-
--- local feedkey = function(k, mode)
--- vim.api.nvim_feedkeys(t(k), mode, true)
--- end
-
 local cmp_status_ok, cmp = pcall(require, "cmp")
 
 local luasnip = require("luasnip")
@@ -23,14 +15,15 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-vim.opt.completeopt = "menuone,noselect"
+vim.opt.completeopt = "menu,menuone,noselect"
+
 
 cmp.setup({
 
   snippet = {
 
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
 
@@ -62,7 +55,7 @@ cmp.setup({
     format = function(entry, vim_item)
       local icons = require "plugins.lspkind_icons"
       vim_item.kind = string.format("%s %s", icons[vim_item.kind], vim_item.kind)
-
+      vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
       vim_item.menu = ({
         copilot = "[CP]",
         luasnip = "LuaSnip",

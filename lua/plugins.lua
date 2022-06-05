@@ -107,18 +107,19 @@ return packer.startup(function(use)
     "akinsho/toggleterm.nvim",
     config = 'require("plugins.toggleterm")'
   }
-use {
+  use {
     "williamboman/nvim-lsp-installer",
     {
-        "neovim/nvim-lspconfig",
-        config = 'require("plugins.lsp-installer")'    }
-}
+      "neovim/nvim-lspconfig",
+      config = 'require("plugins.lsp-installer")'
+    }
+  }
   -- LSP Config, Install and Cmp
-  use  'hrsh7th/cmp-nvim-lsp'
-  use  'hrsh7th/cmp-buffer'
-  use  'hrsh7th/cmp-path'
-  use  'hrsh7th/cmp-cmdline'
-  use  {'hrsh7th/nvim-cmp', config='require("plugins.cmp")'}
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use { 'hrsh7th/nvim-cmp', config = 'require("plugins.cmp")' }
 
   -- Snippet & Snippets
   use {
@@ -132,7 +133,7 @@ use {
   use 'github/copilot.vim'
   use {
     "zbirenbaum/copilot.lua",
-    event = {"VimEnter"},
+    event = { "VimEnter" },
     config = function()
       vim.defer_fn(function()
         require("copilot").setup()
@@ -146,26 +147,28 @@ use {
   }
 
 
--- Git Related
+  -- Git Related
   use {
-  'lewis6991/gitsigns.nvim',
+    'lewis6991/gitsigns.nvim',
     config = function()
-    require('gitsigns').setup()
-  end
-}
+      require('gitsigns').setup()
+    end
+  }
 
--- Debugging and Related
+  -- Debugging and Related
   use {
     'mfussenegger/nvim-dap',
     config = "require('plugins.dap')"
   }
   use {
     "rcarriga/nvim-dap-ui",
-    requires = {"mfussenegger/nvim-dap"},
-    config = "require('plugins.dap-ui')"
+    --requires = {"mfussenegger/nvim-dap"},
+    config = function()
+      require('dapui').setup()
+    end
   }
   use { "nvim-telescope/telescope-dap.nvim",
-    requires ={ "mfussenegger/nvim-dap","nvim-telescope/telescope.nvim"}
+    requires = { "mfussenegger/nvim-dap", "nvim-telescope/telescope.nvim" }
   }
 
   use {

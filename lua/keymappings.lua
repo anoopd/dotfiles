@@ -74,7 +74,7 @@ map("n", "<leader>dx", ":lua require'dap'.step_out()<CR>", silopt)
 map("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<CR>", silopt)
 map("n", "<leader>dB", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", silopt)
 map("n", "<leader>dl", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>", silopt)
-map("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>", silopt)
+map("n", "<leader>dr", ":lua require'dap'.repl.toggle({},'vsplit')<CR><C-w>l")
 map("n", "<leader>drl", ":lua require'dap'.run_last()<CR>", silopt)
 
 map("n", "<leader>dev", ":lua require('dapui').eval()<CR>", silopt)
@@ -89,19 +89,11 @@ map('n', '<leader>dco', '<cmd>lua require"telescope".extensions.dap.configuratio
 map('n', '<leader>dlb', '<cmd>lua require"telescope".extensions.dap.list_breakpoints{}<CR>', silopt)
 map('n', '<leader>dv', '<cmd>lua require"telescope".extensions.dap.variables{}<CR>', silopt)
 map('n', '<leader>df', '<cmd>lua require"telescope".extensions.dap.frames{}<CR>', silopt)
-
--- dap-ui
--- map("n", '<leader>dsc', '<cmd>lua require"dap.ui.variables".scopes()<CR>', silopt)
--- map("n", '<leader>dhh', '<cmd>lua require"dap.ui.variables".hover()<CR>', silopt)
--- map("v", '<leader>dhv', '<cmd>lua require"dap.ui.visual_hover()<CR>', silopt)
--- map("n", '<leader>duh', '<cmd>lua require"dap.ui.widgets".hover()<CR>', silopt)
--- map("n", '<leader>duf', '<cmd>lua local widgets=require"dap.ui.widgets";widgets.centered_float(widgets.scopes<CR>', silopt)
+map("n", '<leader>duh', '<cmd>lua require"dap.ui.widgets".hover()<CR>', silopt)
+map("n", '<leader>duf', '<cmd>lua local widgets=require"dap.ui.widgets";widgets.centered_float(widgets.scopes<CR>', silopt)
+map('n', '<leader>dn', '<cmd>lua require"dap".run_to_cursor()<CR>')
+map('n', '<leader>dk', '<cmd>lua require"dap".up()<CR>zz')
+map('n', '<leader>dj', '<cmd>lua require"dap".down()<CR>zz')
 
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
-
-map( "n", "<Leader>dhh", ":lua require('dap.ui.variables').hover()<CR>",silopt )
-map( "v", "<Leader>dhv", ":lua require('dap.ui.variables').visual_hover()<CR>",silopt )
-
-map( "n", "<Leader>duh", ":lua require('dap.ui.widgets').hover()<CR>",silopt )
-map( "n", "<Leader>duf", ":lua local widgets=require('dap.ui.widgets');widgets.centered_float(widgets.scopes)<CR>",silopt )
